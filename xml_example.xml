@@ -1,0 +1,13 @@
+<person>
+    <id>1</id>
+    <first_name>John</first_name>
+    <last_name>Briwer</last_name>
+    <email>broski_briwer@gnail.com</email>
+    <age>30</age>
+    <address>
+        <city>SPB</city>
+        <street>Moskovskaya</street>
+        <house>22</house>
+        <zip>123541</zip>
+    </address>
+</person>
