@@ -19,7 +19,7 @@ class AuthenticationClient(APIClient):
     """
     Клиент для работы с /api/v1/authentication
     """
-    def login_api(self, request: dict) -> Response:
+    def login_api(self, request: LoginRequestDict) -> Response:
         """
         Метод выполняет аутентификацию пользователя.
         :param request: Словарь с email и password.
@@ -27,7 +27,7 @@ class AuthenticationClient(APIClient):
         """
         return self.post("/api/v1/authentication/login", json=request)
 
-    def refresh_api(self, request: dict) -> Response:
+    def refresh_api(self, request: RequestRequestDict) -> Response:
         """
         Метод обновляет токен авторизации.
         :param request: Словарь с refreshToken.
