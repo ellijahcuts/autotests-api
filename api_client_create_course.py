@@ -1,4 +1,4 @@
-from clients.courses.courses_api import get_private_courses_client, CreateCourseRequestDict
+from clients.courses.courses_client import get_private_courses_client, CreateCourseRequestDict
 from clients.files.files_client import get_private_files_client, CreateFileRequestDict
 from clients.private_http_builder import AuthorizationUserDict
 from clients.users.public_users_client import CreateUserRequestDict, get_public_users_client
