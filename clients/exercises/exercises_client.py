@@ -3,6 +3,7 @@ from httpx import Response
 from clients.api_client import APIClient
 
 from typing import TypedDict
+from clients.private_http_builder import get_private_http_client, AuthorizationUserDict
 
 class GetExerciseQueryDict(TypedDict):
     """
@@ -77,3 +78,10 @@ class ExercisesClient(APIClient):
         :return: Ответ от сервера в виде объекта httpx.Response
         """
         return self.delete(f"/api/v1/exercises/{exercise_id}")
+
+def get_private_exercises_client(user:AuthorizationUserDict) -> ExercisesClient:
+    """
+    Функция создаёт экземпляр PrivateClient с уже настроенным HTTP-клиентом.
+    :return: Готовый к использованию PrivateClient.
+    """
+    return ExercisesClient(client=get_private_http_client(user))
