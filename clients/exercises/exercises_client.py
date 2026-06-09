@@ -3,8 +3,7 @@ from httpx import Response
 from clients.api_client import APIClient
 
 from typing import TypedDict
-from clients.private_http_builder import get_private_http_client, AuthorizationUserDict
-
+from clients.private_http_builder import get_private_http_client, AuthorizationUserSchema
 class GetExerciseQueryDict(TypedDict):
     """
     Описание структуры запроса на получение списка заданий.
@@ -122,7 +121,7 @@ class ExercisesClient(APIClient):
 
 
 
-def get_private_exercises_client(user:AuthorizationUserDict) -> ExercisesClient:
+def get_private_exercises_client(user:AuthorizationUserSchema) -> ExercisesClient:
     """
     Функция создаёт экземпляр PrivateClient с уже настроенным HTTP-клиентом.
     :return: Готовый к использованию PrivateClient.

@@ -2,9 +2,9 @@ from clients.api_client import APIClient
 from httpx import Response
 from typing import TypedDict
 
-from clients.files.files_client import File
-from clients.private_http_builder import get_private_http_client, AuthorizationUserDict
-from clients.users.public_users_client import User
+from clients.files.files_schema import FileSchema
+from clients.private_http_builder import get_private_http_client, AuthorizationUserSchema
+from clients.users.users_shema import UserSchema
 
 
 class GetCourseQueryDict(TypedDict):
@@ -44,9 +44,9 @@ class Course(TypedDict):
     maxScore: int
     minScore: int
     description: str
-    previewFile: File
+    previewFile: FileSchema
     estimatedTime: str
-    createdByUser: User
+    createdByUser: UserSchema
 
 class CreateCourseResponseDict(TypedDict):
     """
@@ -107,7 +107,7 @@ class CoursesClient(APIClient):
 
 
 
-def get_private_courses_client(user:AuthorizationUserDict) -> CoursesClient:
+def get_private_courses_client(user:AuthorizationUserSchema) -> CoursesClient:
     """
     Функция создаёт экземпляр PrivateClient с уже настроенным HTTP-клиентом.
     :return: Готовый к использованию PrivateClient.
