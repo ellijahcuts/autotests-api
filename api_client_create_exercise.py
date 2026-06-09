@@ -1,10 +1,12 @@
-from clients.courses.courses_client import get_private_courses_client, CreateCourseRequestDict
-from clients.exercises.exercises_client import get_private_exercises_client, CreateExerciseRequestDict, GetExerciseQueryDict, UpdateExerciseRequestDict
+from clients.courses.courses_client import get_private_courses_client
+from clients.exercises.exercises_client import get_private_exercises_client
 from clients.files.files_client import get_private_files_client
 from clients.files.files_schema import CreateFileRequestSchema
 from clients.private_http_builder import AuthorizationUserSchema
 from clients.users.public_users_client import get_public_users_client
-from clients.users.users_shema import CreateUserRequestSchema
+from clients.users.users_schema import CreateUserRequestSchema
+from clients.courses.courses_schema import CreateCourseRequestSchema
+from clients.exercises.exercises_schema import CreateExerciseRequestSchema,UpdateExerciseRequestSchema, GetExerciseQuerySchema
 import tools.fakers
 
 public_users_client = get_public_users_client()
@@ -34,14 +36,14 @@ create_file_request = CreateFileRequestSchema(
 create_file_response = files_client.create_file(create_file_request)
 print('Create file data: ',create_file_response)
 
-create_course_request = CreateCourseRequestDict(
+create_course_request = CreateCourseRequestSchema(
     title = 'Python QA',
-    maxScore = 100,
-    minScore = 0,
+    max_score = 100,
+    min_score = 0,
     description = "Обучение тестированию на Пайтоне",
-    estimatedTime = "500 часов и это не предел",
-    previewFileId = create_file_response.file.id,
-    createdByUserId = create_user_response.user.id
+    estimated_time = "500 часов и это не предел",
+    preview_file_id = create_file_response.file.id,
+    created_by_user_id = create_user_response.user.id
 )
 
 create_course_response = courses_client.create_course(create_course_request)
@@ -49,14 +51,14 @@ print('Create course data: ',create_course_response)
 
 exercises_client = get_private_exercises_client(authentication_user)
 
-create_exercise_request = CreateExerciseRequestDict(
+create_exercise_request = CreateExerciseRequestSchema(
     title= "Создание задания",
-    courseId = create_course_response['course']['id'],
-    maxScore= 10,
-    minScore= 0,
-    orderIndex = 1,
+    course_id = create_course_response.course.id,
+    max_score= 10,
+    min_score= 0,
+    order_index = 1,
     description = "Создание запроса",
-    estimatedTime = "15 мин"
+    estimated_time = "15 мин"
 )
 
 create_exercise_response = exercises_client.create_exercise(create_exercise_request)
@@ -66,29 +68,22 @@ print('Create exercise data: ',create_exercise_response)
 
 
 
-
-
-
-
-
-"""
 #Проверка остальных методов:
-get_exercises_request = GetExerciseQueryDict(
-    courseId=create_course_response['course']['id']
+get_exercises_request = GetExerciseQuerySchema(
+    course_id=create_course_response.course.id,
 )
 get_exercises_response = exercises_client.get_exercises(get_exercises_request)
 print('Список заданий в курсе: ',get_exercises_response)
 
-update_exercise_request = UpdateExerciseRequestDict(
+update_exercise_request = UpdateExerciseRequestSchema(
     title='Задание было изменено и это новое название',
-    maxScore= 500,
-    minScore= 150,
-    orderIndex= 22,
+    max_score= 500,
+    min_score= 150,
+    order_index= 22,
     description= "Измененное задание(После апдейта)",
-    estimatedTime= "0 лет"
+    estimated_time= "0 лет"
 )
-update_exercise_response = exercises_client.update_exercise(f"{create_exercise_response['exercise']['id']}",update_exercise_request)
+update_exercise_response = exercises_client.update_exercise(f"{create_exercise_response.exercise.id}",update_exercise_request)
 print('Обновленное задание: ',update_exercise_response)
-get_exercise_response = exercises_client.get_exercise(f"{create_exercise_response['exercise']['id']}")
+get_exercise_response = exercises_client.get_exercise(f"{create_exercise_response.exercise.id}")
 print('Полученное задание по ID(После Апдейта): ',get_exercise_response)
-"""

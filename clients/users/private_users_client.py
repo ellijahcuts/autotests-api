@@ -1,7 +1,7 @@
 from clients.api_client import APIClient
 from httpx import Response
 from clients.private_http_builder import get_private_http_client, AuthorizationUserSchema
-from clients.users.users_shema import UpdateUserRequestSchema,GetUserResponseSchema
+from clients.users.users_schema import UpdateUserRequestSchema,GetUserResponseSchema
 
 
 class PrivateUsersClient(APIClient):
