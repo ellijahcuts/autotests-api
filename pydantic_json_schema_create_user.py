@@ -15,9 +15,6 @@ create_user_request = CreateUserRequestSchema(
 )
 
 create_user_response = public_users_client.create_user_api(create_user_request)
-create_user_response_json = create_user_response.json()
 create_user_response_schema = CreateUserResponseSchema.model_json_schema()
 
-create_user_response_json['user']['email'] = "gangshit"
-
-validate_json_schema(instance=create_user_response_json, schema=create_user_response_schema)
+validate_json_schema(instance=create_user_response.json(), schema=create_user_response_schema)
