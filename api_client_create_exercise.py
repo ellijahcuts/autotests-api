@@ -65,9 +65,7 @@ create_exercise_response = exercises_client.create_exercise(create_exercise_requ
 print('Create exercise data: ',create_exercise_response)
 
 
-
-
-
+"""
 #Проверка остальных методов:
 get_exercises_request = GetExerciseQuerySchema(
     course_id=create_course_response.course.id,
@@ -87,3 +85,4 @@ update_exercise_response = exercises_client.update_exercise(f"{create_exercise_r
 print('Обновленное задание: ',update_exercise_response)
 get_exercise_response = exercises_client.get_exercise(f"{create_exercise_response.exercise.id}")
 print('Полученное задание по ID(После Апдейта): ',get_exercise_response)
+"""

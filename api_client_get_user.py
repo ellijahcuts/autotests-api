@@ -1,7 +1,7 @@
 from clients.private_http_builder import AuthorizationUserSchema
 from clients.users.public_users_client import  get_public_users_client
 from clients.users.private_users_client import get_private_users_client
-from clients.users.users_shema import CreateUserRequestSchema
+from clients.users.users_schema import CreateUserRequestSchema
 import tools.fakers
 
 public_users_client = get_public_users_client()
