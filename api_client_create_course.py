@@ -5,17 +5,11 @@ from clients.files.files_schema import CreateFileRequestSchema
 from clients.private_http_builder import AuthorizationUserSchema
 from clients.users.public_users_client import get_public_users_client
 from clients.users.users_schema import CreateUserRequestSchema
-import tools.fakers
+from tools.fakers import fake
 
 public_users_client = get_public_users_client()
 
-create_user_request = CreateUserRequestSchema(
-    email=tools.fakers.generate_email(),
-    password=tools.fakers.generate_password(),
-    last_name=tools.fakers.generate_last_name(),
-    first_name=tools.fakers.generate_first_name(),
-    middle_name=tools.fakers.generate_middle_name()
-)
+create_user_request = CreateUserRequestSchema()
 create_user_response = public_users_client.create_user(create_user_request)
 
 authentication_user = AuthorizationUserSchema(
@@ -27,8 +21,6 @@ files_client=get_private_files_client(authentication_user)
 courses_client=get_private_courses_client(authentication_user)
 
 create_file_request = CreateFileRequestSchema(
-    filename = 'image.png',
-    directory = 'courses',
     upload_file = './testdata/files/image.png'
 )
 create_file_response = files_client.create_file(create_file_request)
@@ -36,11 +28,6 @@ print('Create file data: ',create_file_response)
 
 
 create_course_request = CreateCourseRequestSchema(
-    title = 'Python QA',
-    max_score = 100,
-    min_score = 0,
-    description = "Обучение тестированию на Пайтоне",
-    estimated_time = "500 часов и это не предел",
     preview_file_id = create_file_response.file.id,
     created_by_user_id = create_user_response.user.id
 )

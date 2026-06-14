@@ -2,17 +2,11 @@ from clients.private_http_builder import AuthorizationUserSchema
 from clients.users.public_users_client import  get_public_users_client
 from clients.users.private_users_client import get_private_users_client
 from clients.users.users_schema import CreateUserRequestSchema
-import tools.fakers
+
 
 public_users_client = get_public_users_client()
 
-create_user_request = CreateUserRequestSchema(
-    email=tools.fakers.generate_email(),
-    password=tools.fakers.generate_password(),
-    last_name=tools.fakers.generate_last_name(),
-    first_name=tools.fakers.generate_first_name(),
-    middle_name=tools.fakers.generate_middle_name()
-)
+create_user_request = CreateUserRequestSchema()
 
 create_user_response = public_users_client.create_user(create_user_request)
 print('Create user data: ', create_user_response)
