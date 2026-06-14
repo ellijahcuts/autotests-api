@@ -17,7 +17,7 @@ class CreateCourseRequestSchema(BaseModel):
     """
     model_config = ConfigDict(populate_by_name=True)
 
-    title: str = Field(default_factory= fake.word)
+    title: str = Field(default_factory= fake.sentence)
     max_score: int = Field(alias='maxScore', default_factory= fake.max_score)
     min_score: int = Field(alias='minScore', default_factory= fake.min_score)
     description: str = Field(default_factory= fake.text)
@@ -31,7 +31,7 @@ class UpdateCourseRequestSchema(BaseModel):
     """
     model_config = ConfigDict(populate_by_name=True)
 
-    title: str | None = Field(default_factory= fake.word)
+    title: str | None = Field(default_factory= fake.sentence)
     max_score: int | None = Field(alias='maxScore', default_factory= fake.max_score)
     min_score: int | None = Field(alias='minScore', default_factory= fake.min_score)
     description: str | None = Field(default_factory= fake.text)
@@ -44,7 +44,7 @@ class CourseSchema(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
     id: str = Field(default_factory=fake.uuid4)
-    title: str = Field(default_factory= fake.word)
+    title: str = Field(default_factory= fake.sentence)
     max_score: int = Field(alias='maxScore', default_factory= fake.max_score)
     min_score: int = Field(alias='minScore', default_factory= fake.min_score)
     description: str = Field(default_factory= fake.text)
