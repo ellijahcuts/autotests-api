@@ -13,7 +13,7 @@ def assert_status_code(actual: int, expected: int):
         f'but got {actual}.'
     )
 
-def assert_equals(actual: Any, expected: Any, name:str):
+def assert_equal(actual: Any, expected: Any, name:str):
     """
     Проверяет, что фактическое значение равно ожидаемому.
 
@@ -26,4 +26,18 @@ def assert_equals(actual: Any, expected: Any, name:str):
         f'Incorrect value: {name}.'
         f'Expected value: {expected}.' 
         f'Actual value: {actual}.'
+    )
+
+
+def assert_is_true(actual: Any, name: str):
+    """
+    Проверяет, что фактическое значение является истинным.
+
+    :param name: Название проверяемого значения.
+    :param actual: Фактическое значение.
+    :raises AssertionError: Если фактическое значение ложно.
+    """
+    assert actual, (
+        f'Incorrect value: "{name}". '
+        f'Expected true value but got: {actual}'
     )

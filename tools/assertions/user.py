@@ -1,5 +1,5 @@
 from clients.users.users_schema import CreateUserResponseSchema, CreateUserRequestSchema
-from tools.assertions.base import assert_equals
+from tools.assertions.base import assert_equal
 
 
 def assert_create_user_response(request: CreateUserRequestSchema, response: CreateUserResponseSchema):
@@ -10,7 +10,7 @@ def assert_create_user_response(request: CreateUserRequestSchema, response: Crea
     :param response: Ответ API с данными пользователя.
     :raises AssertionError: Если хотя бы одно поле не совпадает.
     """
-    assert_equals(response.user.email, request.email, "email")
-    assert_equals(response.user.first_name, request.first_name, "first_name")
-    assert_equals(response.user.last_name, request.last_name, "last_name")
-    assert_equals(response.user.middle_name, request.middle_name, "middle_name")
+    assert_equal(response.user.email, request.email, "email")
+    assert_equal(response.user.first_name, request.first_name, "first_name")
+    assert_equal(response.user.last_name, request.last_name, "last_name")
+    assert_equal(response.user.middle_name, request.middle_name, "middle_name")
