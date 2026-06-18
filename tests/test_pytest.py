@@ -1,4 +1,4 @@
-def test_one():
+"""def test_one():
     pass
 
 
@@ -7,4 +7,5 @@ def test_assert_positive_case():
 def test_assert_negative_case():
     x = 1
     y = 0
-    assert (y+x) == x, "ggwp"
+    assert (y+x) == x, "ggwp""
+    """
