@@ -1,4 +1,4 @@
-from clients.private_http_builder import AuthorizationUserSchema
+from clients.private_http_builder import AuthenticationUserSchema
 from clients.users.public_users_client import  get_public_users_client
 from clients.users.private_users_client import get_private_users_client
 from clients.users.users_schema import CreateUserRequestSchema, CreateUserResponseSchema, GetUserResponseSchema
@@ -23,7 +23,7 @@ print('Create user data: ',created_user.model_dump())
 
 validate_json_schema(instance=create_user_response.json(), schema=create_user_response_schema)
 
-authentication_user = AuthorizationUserSchema(
+authentication_user = AuthenticationUserSchema(
     email=create_user_request.email,
     password=create_user_request.password
 )

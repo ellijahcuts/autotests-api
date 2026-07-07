@@ -1,7 +1,7 @@
 from clients.api_client import APIClient
 from httpx import Response
 
-from clients.private_http_builder import get_private_http_client, AuthorizationUserSchema
+from clients.private_http_builder import get_private_http_client, AuthenticationUserSchema
 from clients.courses.courses_schema import GetCourseQuerySchema, CreateCourseRequestSchema, UpdateCourseRequestSchema,CreateCourseResponseSchema
 
 
@@ -57,7 +57,7 @@ class CoursesClient(APIClient):
 
 
 
-def get_private_courses_client(user:AuthorizationUserSchema) -> CoursesClient:
+def get_private_courses_client(user:AuthenticationUserSchema) -> CoursesClient:
     """
     Функция создаёт экземпляр PrivateClient с уже настроенным HTTP-клиентом.
     :return: Готовый к использованию PrivateClient.

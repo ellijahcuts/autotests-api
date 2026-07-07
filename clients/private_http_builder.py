@@ -4,12 +4,12 @@ from clients.authentication.authentication_client import get_authentication_clie
 from clients.authentication.authentication_schema import LoginRequestSchema
 
 
-class AuthorizationUserSchema(BaseModel):
+class AuthenticationUserSchema(BaseModel):
     email: EmailStr
     password: str
 
 
-def get_private_http_client(user:AuthorizationUserSchema) -> Client:
+def get_private_http_client(user:AuthenticationUserSchema) -> Client:
     """
     Функция создаёт экземпляр httpx.Client с базовыми настройками.
     :param user: Обьект со схемой авторизации и данными email и password

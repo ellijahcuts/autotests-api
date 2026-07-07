@@ -1,4 +1,4 @@
-from clients.private_http_builder import AuthorizationUserSchema
+from clients.private_http_builder import AuthenticationUserSchema
 from clients.users.public_users_client import  get_public_users_client
 from clients.users.private_users_client import get_private_users_client
 from clients.users.users_schema import CreateUserRequestSchema
@@ -11,7 +11,7 @@ create_user_request = CreateUserRequestSchema()
 create_user_response = public_users_client.create_user(create_user_request)
 print('Create user data: ', create_user_response)
 
-authentication_user = AuthorizationUserSchema(
+authentication_user = AuthenticationUserSchema(
     email=create_user_request.email,
     password=create_user_request.password
 )

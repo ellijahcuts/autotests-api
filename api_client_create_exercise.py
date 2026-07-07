@@ -2,7 +2,7 @@ from clients.courses.courses_client import get_private_courses_client
 from clients.exercises.exercises_client import get_private_exercises_client
 from clients.files.files_client import get_private_files_client
 from clients.files.files_schema import CreateFileRequestSchema
-from clients.private_http_builder import AuthorizationUserSchema
+from clients.private_http_builder import AuthenticationUserSchema
 from clients.users.public_users_client import get_public_users_client
 from clients.users.users_schema import CreateUserRequestSchema
 from clients.courses.courses_schema import CreateCourseRequestSchema
@@ -13,7 +13,7 @@ public_users_client = get_public_users_client()
 create_user_request = CreateUserRequestSchema()
 create_user_response = public_users_client.create_user(create_user_request)
 
-authentication_user = AuthorizationUserSchema(
+authentication_user = AuthenticationUserSchema(
     email=create_user_request.email,
     password=create_user_request.password
 )
